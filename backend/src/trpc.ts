@@ -20,8 +20,6 @@ const ideas = [
 
 const trpc = initTRPC.create()
 
-if (Math.random() + 1) console.info('Check')
-
 export const trpcRouter = trpc.router({
   getIdeas: trpc.procedure.query(() => {
     return { ideas }

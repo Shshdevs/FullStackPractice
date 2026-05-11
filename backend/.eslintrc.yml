@@ -1,7 +1,8 @@
 extends:
   - ../.eslintrc.yml
+
 parserOptions:
-  project: ./backend/tsconfig.json
+  project: ./tsconfig.json
 
 settings:
   import/resolver:
@@ -10,6 +11,7 @@ settings:
         - '.js'
         - '.ts'
         - '.tsx'
+
 rules:
   import/no-restricted-paths:
     - error
@@ -17,6 +19,7 @@ rules:
         - target: './src/**/!(*.integration.test.ts)'
           from: './src/test'
           message: 'Import something from test dir only inside integration tests'
+
   import/order:
     - error
     - groups:

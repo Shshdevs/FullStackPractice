@@ -6,8 +6,8 @@
     "dev": "ts-node-dev --rs ./src/index.ts",
     "build": "rimraf ./dist && tsc --build ./tsconfig.json",
     "start": "node ./dist/index.js",
-    "prettify": "prettier --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss,css}' '!**/{node_modules, dist}/**/*'",
-    "lint": "cd .. && eslint --cache --cache-location ./backend/node_modules/.cache/.eslintcache --ext .ts ./backend",
+    "prettify": "prettier --cache --write '{src/**/*,*}.{ts,js,json,yml}' '!**/{node_modules, dist}/**/*'",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts, .",
     "types": "tsc --noEmit --project ./tsconfig.json"
   },
   "compilerOptions": {
