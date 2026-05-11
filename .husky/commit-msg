@@ -1,13 +1,42 @@
-commit_msg=$(cat "$1")
+#!/bin/sh
 
-actual_msg=$(echo "$commit_msg" | awk "NF && $1 !~ /^#/")
+commit_msg_file="$1"
 
-first_line=$(echo "$actual_msg" | head -n1)
-other_lines=$(echo "$actual_msg" | tail -n +2)
+first_line=$(grep -v '^[[:space:]]*#' "$commit_msg_file" | sed '/^[[:space:]]*$/d' | head -n 1)
 
-formatted_first_line=$(echo "$first_line" | sed -e $'s/^[ \t]*//' -e $'s/[ \t]*$//' -E -e $'s/[ \t] + / /g' | awk '{ $0=toupper(substr($0, 1, 1)) substr($0,2); } 1')
+if [ -z "$first_line" ]; then
+  echo "❌ Commit message is empty"
+  exit 1
+fi
 
-formatted_msg="${formatted_first_line}
-${other_lines}"
+if echo "$first_line" | grep -q '^[[:space:]]'; then
+  echo "❌ Commit message must not start with spaces"
+  echo "Current: \"$first_line\""
+  exit 1
+fi
 
-echo "$formatted_msg" > "$1"
+if echo "$first_line" | grep -q '[[:space:]]$'; then
+  echo "❌ Commit message must not end with spaces"
+  echo "Current: \"$first_line\""
+  exit 1
+fi
+
+if echo "$first_line" | grep -q '[[:space:]][[:space:]]'; then
+  echo "❌ Commit message must not contain multiple spaces in a row"
+  echo "Current: \"$first_line\""
+  exit 1
+fi
+
+if echo "$first_line" | grep -q '\.\.'; then
+  echo "❌ Commit message must not contain repeated dots"
+  echo "Current: \"$first_line\""
+  exit 1
+fi
+
+if echo "$first_line" | grep -q '\.$'; then
+  echo "❌ Commit message must not end with a dot"
+  echo "Current: \"$first_line\""
+  exit 1
+fi
+
+exit 0
