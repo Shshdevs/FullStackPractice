@@ -1,9 +1,8 @@
-import type { TrpcRouter } from '@fullstackpractice/backend/src/trpc'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { createTRPCReact, httpBatchLink } from '@trpc/react-query'
+import { httpBatchLink } from '@trpc/react-query'
 import type React from 'react'
 
-export const trpc = createTRPCReact<TrpcRouter>()
+import { trpc } from './trpc'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +24,7 @@ const trpcClient = trpc.createClient({
 export const TrpcProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}> {children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </trpc.Provider>
   )
 }
