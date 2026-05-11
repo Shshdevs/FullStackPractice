@@ -1,6 +1,6 @@
 '*.{ts,tsx,js}':
-  - 'eslint --cache --cache-location ./node_modules/.cache/.eslintcache --fix'
   - 'prettier --cache --write'
+  - 'eslint --cache --cache-location ./node_modules/.cache/.eslintcache --fix'
 
 '*.{json,yml,scss}':
   - 'prettier --cache --write'

@@ -1,6 +1,6 @@
-import js from '@eslint/js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import js from '@eslint/js'
 import prettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
 import jest from 'eslint-plugin-jest'
@@ -13,14 +13,7 @@ const rootDir = path.dirname(fileURLToPath(import.meta.url))
 
 export default [
   {
-    ignores: [
-      '**/node_modules/**',
-      '**/dist/**',
-      '**/build/**',
-      '**/.vite/**',
-      '**/coverage/**',
-      '**/*.config.js',
-    ],
+    ignores: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/.vite/**', '**/coverage/**', '**/*.config.js'],
   },
 
   js.configs.recommended,
@@ -65,8 +58,12 @@ export default [
         },
       ],
 
+      'space-infix-ops': 'error',
+      'arrow-spacing': ['error', { before: true, after: true }],
+      'space-before-blocks': 'error',
+      'block-spacing': ['error', 'always'],
+      
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
-
       '@typescript-eslint/strict-boolean-expressions': 'off',
       '@typescript-eslint/prefer-nullish-coalescing': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
@@ -133,13 +130,7 @@ export default [
       'import/order': [
         'error',
         {
-          groups: [
-            'builtin',
-            'external',
-            'parent',
-            'sibling',
-            'index',
-          ],
+          groups: ['builtin', 'external', 'parent', 'sibling', 'index'],
           pathGroups: [
             {
               pattern: '{.,..}/**/env',
@@ -163,10 +154,7 @@ export default [
   },
 
   {
-    files: [
-      'backend/**/*.{test,spec}.ts',
-      'webapp/**/*.{test,spec}.{ts,tsx}',
-    ],
+    files: ['backend/**/*.{test,spec}.ts', 'webapp/**/*.{test,spec}.{ts,tsx}'],
 
     plugins: {
       jest,
@@ -234,8 +222,7 @@ export default [
                 '!@fullstackpractice/backend/src/utils/can',
               ],
               allowTypeImports: true,
-              message:
-                'Only types and input schemas are allowed to be imported from backend workspace',
+              message: 'Only types and input schemas are allowed to be imported from backend workspace',
             },
           ],
         },

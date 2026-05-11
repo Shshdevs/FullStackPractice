@@ -1,4 +1,10 @@
 {
+  "stylelint.validate": ["css", "scss"],
+  "stylelint.configFile": "stylelint.config.mjs",
+
+  "scss.validate": false,
+  "css.validate": false,
+  "less.validate": false,
   "eslint.workingDirectories": [
     {
       "directory": "backend",

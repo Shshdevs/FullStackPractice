@@ -1,2 +1,3 @@
 pnpm lint-staged
+pnpm w stylelint --fix
 pnpm types

@@ -6,6 +6,7 @@
     "b": "pnpm --filter @fullstackpractice/backend",
     "w": "pnpm --filter @fullstackpractice/webapp",
     "lint": "concurrently 'pnpm b lint' 'pnpm w lint'",
+    "lint:fix": "concurrently 'pnpm b lint --fix' 'pnpm w lint --fix'",
     "types": "concurrently 'pnpm b types' 'pnpm w types'",
     "prettify": "concurrently 'pnpm b prettify' 'pnpm w prettify'",
     "prepare": "husky install"
@@ -21,6 +22,7 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^29.15.2",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
