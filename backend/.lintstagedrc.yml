@@ -1,4 +1,4 @@
-'*.{tx,tsx,js}':
+'*.{ts,tsx,js}':
   - 'cd .. && eslint --cache --cache-location ./backend/node_modules/.cache/.eslintcache --ext .ts ./backend --fix'
   - 'prettier --loglevel warn --cache --write'
 '*.{json,yml,sccs}': 'prettier --loglevel warn --cache --write'
