@@ -70,7 +70,8 @@ export default [
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/triple-slash-reference': 'off',
       '@typescript-eslint/consistent-type-assertions': 'off',
-
+      '@typescript-eslint/no-explicit-any':'off',
+      
       curly: ['error', 'all'],
 
       'no-irregular-whitespace': [

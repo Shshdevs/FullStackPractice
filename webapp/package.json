@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache .",
     "stylelint": "stylelint --cache --cache-location ./node_modules/.cache/.stylelint 'src/**/*.scss'",
+    "stylecheck": "sass --update -q --load-path=./node_modules ./src:./node_modules/.cache/.stylecheckcache",
     "preview": "vite preview",
     "prettify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss,css}' '!**/{node_modules, dist}/**/*'",
     "types": "tsc --noEmit --project ./tsconfig.app.json && tsc --noEmit --project ./tsconfig.node.json"
@@ -17,12 +18,15 @@
     "@tanstack/react-query": "^5.100.9",
     "@trpc/client": "^11.17.0",
     "@trpc/react-query": "^11.17.0",
+    "formik": "^2.4.9",
+    "formik-validator-zod": "^2.2.0",
     "include-media": "^2.0.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.15.0",
     "reset-css": "^5.0.2",
-    "sass": "^1.99.0"
+    "sass": "^1.99.0",
+    "zod": "3.19.1"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
