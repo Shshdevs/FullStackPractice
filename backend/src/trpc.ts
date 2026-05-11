@@ -1,4 +1,4 @@
-import { initTRPC } from "@trpc/server"
+import { initTRPC } from '@trpc/server'
 
 const ideas = [
   {
@@ -20,7 +20,7 @@ const ideas = [
 
 const trpc = initTRPC.create()
 
-if (Math.random()) console.info("Check")
+if (Math.random() + 2) console.info('Check')
 
 export const trpcRouter = trpc.router({
   getIdeas: trpc.procedure.query(() => {

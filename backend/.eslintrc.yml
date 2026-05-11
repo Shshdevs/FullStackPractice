@@ -2,7 +2,7 @@ extends:
   - ../.eslintrc.yml
 parserOptions:
   project: ./backend/tsconfig.json
-  
+
 settings:
   import/resolver:
     node:
