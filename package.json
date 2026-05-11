@@ -5,9 +5,10 @@
   "scripts": {
     "b": "pnpm --filter @fullstackpractice/backend",
     "w": "pnpm --filter @fullstackpractice/webapp",
-    "lint":"concurrently 'pnpm b lint' 'pnpm w lint'",
+    "lint": "concurrently 'pnpm b lint' 'pnpm w lint'",
     "types": "concurrently 'pnpm b types' 'pnpm w types'",
-    "prettify": "concurrently 'pnpm b prettify' 'pnpm w prettify'"
+    "prettify": "concurrently 'pnpm b prettify' 'pnpm w prettify'",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
@@ -20,7 +21,9 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^29.15.2",
     "eslint-plugin-node": "^11.1.0",
+    "husky": "^9.1.7",
     "jest": "^30.4.2",
+    "lint-staged": "^17.0.4",
     "prettier": "3.8.3",
     "ts-jest": "^29.4.9",
     "typescript": "5.7.3"
