@@ -1,4 +1,3 @@
-
 commit_msg=$(cat "$1")
 
 actual_msg=$(echo "$commit_msg" | awk "NF && $1 !~ /^#/")
