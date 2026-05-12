@@ -14,5 +14,8 @@
       "directory": "webapp",
       "changeProcessCWD": true
     }
-  ]
+  ],
+  "prisma.pinToPrisma6": true,
+  "workbench.activityBar.compact": false,
+  "workbench.activityBar.autoHide": true
 }

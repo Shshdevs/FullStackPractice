@@ -1,11 +1,21 @@
+import { zCreateIdeaTrpcInput } from '@fullstackpractice/backend/src/router/newIdea/input'
 import { useFormik } from 'formik'
 import { withZodSchema } from 'formik-validator-zod'
-import { z } from 'zod'
+import { useState } from 'react'
+import { Alert } from '../../components/alert'
+import { Button } from '../../components/button'
+import { FormItems } from '../../components/formitems'
 import { Input } from '../../components/input'
 import { Segment } from '../../components/segment'
-import { TextArea } from '../TextArea'
+import { TextArea } from '../../components/textArea'
+import { trpc } from '../../lib/trpc'
 
 export const NewIdeaPage = () => {
+  const [successMessageVisible, setSuccessMessageVisible] = useState(false)
+  const [submittingError, setSubmittingError] = useState<string | null>(null)
+
+  const createIdea = trpc.newIdea.useMutation()
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -13,20 +23,23 @@ export const NewIdeaPage = () => {
       description: '',
       text: '',
     },
-    onSubmit: (values) => {
-      console.info('Submitted', values)
+    onSubmit: async (values) => {
+      setSubmittingError(null)
+      try {
+        await createIdea.mutateAsync(values)
+        formik.resetForm()
+        setSuccessMessageVisible(true)
+        setTimeout(() => {
+          setSuccessMessageVisible(false)
+        }, 3000)
+      } catch (error: any) {
+        setSubmittingError(error.message)
+        setTimeout(() => {
+          setSubmittingError(null)
+        }, 3000)
+      }
     },
-    validate: withZodSchema(
-      z.object({
-        name: z.string().min(1, 'Name can not be empty').max(20, 'Name is too long!'),
-        nick: z
-          .string()
-          .min(1, 'Nick can not be empty')
-          .regex(/^[a-z0-9-]+$/, 'Nick may contains only lowercase latters, numbers and dashers'),
-        description: z.string().min(1, 'Description can not be empty'),
-        text: z.string().min(10, 'Text mush contain at least 10 characters'),
-      })
-    ),
+    validate: withZodSchema(zCreateIdeaTrpcInput),
   })
   return (
     <Segment title="New idea">
@@ -36,13 +49,18 @@ export const NewIdeaPage = () => {
           formik.handleSubmit()
         }}
       >
-        <Input name="nick" label="Nick" formik={formik} />
-        <Input name="name" label="Name" formik={formik} />
-        <Input name="description" label="Description" formik={formik} />
-        <TextArea name="text" label="Text" formik={formik} />
+        <FormItems>
+          <Input name="nick" label="Nick" formik={formik} />
+          <Input name="name" label="Name" formik={formik} />
+          <Input name="description" label="Description" formik={formik} maxWidth={500} />
+          <TextArea name="text" label="Text" formik={formik} />
 
-        {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Some fields are invalid </div>}
-        <button type="submit">Submit new idea</button>
+          {!formik.isValid && !!formik.submitCount && <div style={{ color: 'red' }}>Some fields are invalid </div>}
+          {!!submittingError && <Alert color="red">{submittingError}</Alert>}
+          {successMessageVisible && <Alert color="green">Idea Created</Alert>}
+
+          <Button children={'Create new idea'} loading={formik.isSubmitting} />
+        </FormItems>
       </form>
     </Segment>
   )

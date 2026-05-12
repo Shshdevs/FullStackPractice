@@ -13,7 +13,7 @@ const rootDir = path.dirname(fileURLToPath(import.meta.url))
 
 export default [
   {
-    ignores: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/.vite/**', '**/coverage/**', '**/*.config.js'],
+    ignores: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/.vite/**', '**/coverage/**', '**/*.config.js', "backend/prisma.config.ts"],
   },
 
   js.configs.recommended,
@@ -62,7 +62,7 @@ export default [
       'arrow-spacing': ['error', { before: true, after: true }],
       'space-before-blocks': 'error',
       'block-spacing': ['error', 'always'],
-      
+
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/strict-boolean-expressions': 'off',
       '@typescript-eslint/prefer-nullish-coalescing': 'off',
@@ -70,8 +70,8 @@ export default [
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/triple-slash-reference': 'off',
       '@typescript-eslint/consistent-type-assertions': 'off',
-      '@typescript-eslint/no-explicit-any':'off',
-      
+      '@typescript-eslint/no-explicit-any': 'off',
+
       curly: ['error', 'all'],
 
       'no-irregular-whitespace': [

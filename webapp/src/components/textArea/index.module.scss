@@ -1,0 +1,14 @@
+@use '../../styles/vars' as *;
+@use '../../styles/mixins' as *;
+
+.field {
+  @include field;
+
+  .input {
+    @include input;
+    min-height: 150px;
+    width: 100%;
+    max-width: none;
+    resize: vertical;
+  }
+}

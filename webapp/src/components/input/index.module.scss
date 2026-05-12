@@ -1,0 +1,10 @@
+@use '../../styles/vars' as *;
+@use '../../styles/mixins' as *;
+
+.field {
+  @include field;
+
+  .input {
+    @include input;
+  }
+}
